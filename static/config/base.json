@@ -1,0 +1,30 @@
+{
+    "header": [
+        {
+            "key": "首页",
+            "value": "/home"
+        },
+        {
+            "key": "博客",
+            "value": "/blog"
+        },
+        {
+            "key": "分类",
+            "value": "/categories"
+        },
+        {
+            "key": "标签",
+            "value": "/tags"
+        }
+    ],
+    "footer": [
+        {
+            "key": "作者",
+            "value": "wander"
+        },
+        {
+            "key": "技术",
+            "value": "koa vue"
+        }
+    ]
+}

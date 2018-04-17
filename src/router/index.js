@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import homeIndex from '@/pages/home/index'
+import homeIndex from '@/pages/index'
+import home from '@/pages/home/home'
+import blog from '@/pages/blog/blog'
 
 Vue.use(Router)
 export default new Router({
@@ -8,7 +10,21 @@ export default new Router({
     {
       path: '/',
       name: 'homeIndex',
-      component: homeIndex
+      component: homeIndex,
+      children: [
+        {
+          path: '/',
+          component: home
+        },
+        {
+          path: 'home',
+          component: home
+        },
+        {
+          path: 'blog',
+          component: blog
+        }
+      ]
     }
   ]
 })

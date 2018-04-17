@@ -15,9 +15,16 @@ export default {
     margin: 0;
     padding: 0;
 }
-html, body, #main {
+html, body, #main, #app {
     width: 100%;
     height: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color:cyan
 }
 ul li {
     list-style-type: none

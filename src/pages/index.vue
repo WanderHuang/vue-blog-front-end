@@ -1,14 +1,14 @@
 <template>
   <div id="main">
-    <div class="header">
+    <div class="header center-container ">
         <ul>
-            <li v-for="item in header" class="header-item" :key="item.key">{{item.key}}</li>
+            <li v-for="item in header" class="header-item" :key="item.key"><router-link :to="item.value">{{item.key}}</router-link></li>
         </ul>
     </div>
     <div class="container">
-      <div class="content"></div>
+      <router-view/>
     </div>
-    <div class="footer">
+    <div class="footer center-container">
         <ul>
             <li v-for="item in footer" class="footer-item" :key="item.key">{{item.key}}:{{item.value}}</li>
         </ul>
@@ -26,9 +26,8 @@ export default {
       footer: []
     }
   },
-  created: () => {
+  created () {
     let $this = this
-    console.log('get base.json....')
     axios.get('static/config/base.json')
       .then(response => {
         $this.header = response.data.header
@@ -38,7 +37,7 @@ export default {
         console.log(err)
       })
   },
-  mounted: () => {
+  mounted () {
     console.log('------')
   }
 }
@@ -48,7 +47,8 @@ export default {
 <style scoped>
 .header-item, .footer-item {
     display: inline-block;
-    color: #428b86
+    margin-right: 20px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /** 布局*/
@@ -57,24 +57,29 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .header {
     height: 100px;
     width: 100%;
-    background: #c4fafb;
-    position: absolute;
-    top: 0;
 }
 .container{
     width: 100%;
     height: 100%;
+    overflow: hidden; /* BFC */
 }
 .footer {
     height: 100px;
     width: 100%;
-    background: #c4fafb;
-    position: absolute;
-    bottom: 0;
+}
+.center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ul li:hover {
+  color:#c4fafb;
+  cursor: pointer;
 }
 
 </style>
