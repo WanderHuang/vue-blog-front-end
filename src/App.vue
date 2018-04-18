@@ -11,23 +11,9 @@ export default {
 </script>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-}
-html, body, #main, #app {
+#main, #app {
     width: 100%;
     height: 100%;
-}
-a {
-  text-decoration: none;
-  color: black;
-}
-a:hover {
-  color:cyan
-}
-ul li {
-    list-style-type: none
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

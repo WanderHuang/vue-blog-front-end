@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica','Arial','Times','Microsoft YaHei'
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    color:cyan
+}
+ul li {
+    list-style-type: none
+}
+#background{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #00ffdeab;
+    opacity: 0.2;
+    overflow: hidden;
+    z-index: -100;
+}
