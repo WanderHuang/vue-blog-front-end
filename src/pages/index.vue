@@ -1,8 +1,11 @@
 <template>
   <div id="main">
-    <div class="header center-container ">
+    <div class="header left-container">
+        <div class="avatar-container">
+          <img alt="avatar" src="../assets/Avatar.jpg" style="border-radius: 50%; width: 80px; height: 80px">
+        </div>
         <ul>
-            <li v-for="item in header" class="header-item" :key="item.key"><router-link :to="item.value">{{item.key}}</router-link></li>
+            <li v-for="item in header" class="header-item" :key="item.key"><router-link :to="item.value"><i  :class="item.font" :title="item.key"></i></router-link></li>
         </ul>
     </div>
     <div class="container">
@@ -66,7 +69,7 @@ export default {
 .container{
     width: 100%;
     height: 100%;
-    overflow: hidden; /* BFC */
+    overflow-y: auto;
 }
 .footer {
     height: 100px;
@@ -77,9 +80,25 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.left-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 ul li:hover {
   color:#c4fafb;
   cursor: pointer;
+}
+
+i.fa {
+  color: #0093ffb8;
+  font-size: 30px;
+}
+
+.avatar-container{
+  flex-basis: 30%;
+  display: flex;
+  justify-content: center;
 }
 
 </style>

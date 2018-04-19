@@ -2,19 +2,23 @@
     "header": [
         {
             "key": "首页",
-            "value": "/home"
+            "value": "/home",
+            "font" : "fa fa-institution"
         },
         {
             "key": "博客",
-            "value": "/blog"
+            "value": "/blog",
+            "font" : "fa fa-align-left"
         },
         {
             "key": "分类",
-            "value": "/categories"
+            "value": "/categories",
+            "font" : "fa fa-gg"
         },
         {
             "key": "标签",
-            "value": "/tags"
+            "value": "/tags",
+            "font" : "fa fa-tags"
         }
     ],
     "footer": [
