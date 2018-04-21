@@ -78,7 +78,7 @@ const scope = {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height
       },
-      speed: Math.random(),
+      speed: Math.random() + 0.1,
       radius: Math.random() * 60 + 20,
       color: colors[Math.floor(Math.random() * colors.length)],
       hachureAngle: Math.random() * 90,

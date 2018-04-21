@@ -1,29 +1,50 @@
 <template>
   <section class="home-page">
-   <!-- eslint-disable-next-line -->
-    <article v-for="info in news">
-      <div class="article-container">
-        <header>News: title here</header>
-        <div>
-          <template v-for="x in 100"> {{x}}.{{info.content}}</template>
-        </div>
-        <footer>News: footer</footer>
-      </div>
-    </article>
+    <articlePreview v-for="info in news" :view ="info" :key="info.title"></articlePreview>
   </section>
 </template>
 <script>
+import articlePreview from '@/components/home/Preview'
 export default {
   data () {
     return {
       news: []
     }
   },
+  components: {
+    articlePreview
+  },
   created () {
     let len = 10
     while (len--) {
       this.news.push({
-        content: '----美国轰炸叙利亚----'
+        title: '我是一个标题' + len,
+        author: 'wander',
+        authorAddress: '/person/wander/home',
+        date: '2018-04-21',
+        location: '/blog/20180421/name_hash',
+        tags: [
+          {
+            tag: '新闻',
+            link: '/blog/news/1',
+            color: 'theme-1-color-purple'
+          },
+          {
+            tag: '生活',
+            link: '/blog/life/1',
+            color: 'theme-1-color-purple'
+          },
+          {
+            tag: '科技',
+            link: '/blog/tech/1',
+            color: 'theme-1-color-blue'
+          }
+        ],
+        content: '----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------' +
+        '美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚---' +
+        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----' +
+        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----' +
+        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----....'
       })
     }
   }
