@@ -86,6 +86,7 @@ export default {
   left: 0;
 }
 .container{
+  width: 100%;
   margin:100px auto;
 }
 .footer-container {
