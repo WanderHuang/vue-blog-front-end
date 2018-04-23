@@ -5,6 +5,8 @@
 </template>
 <script>
 import articlePreview from '@/components/home/Preview'
+import {backend} from '../../config'
+const URL_ARTICLES = backend.base + backend.home + '/'
 export default {
   data () {
     return {
@@ -15,38 +17,26 @@ export default {
     articlePreview
   },
   created () {
-    let len = 10
-    while (len--) {
-      this.news.push({
-        title: '我是一个标题' + len,
-        author: 'wander',
-        authorAddress: '/person/wander/home',
-        date: '2018-04-21',
-        location: '/blog/20180421/name_hash',
-        tags: [
-          {
-            tag: '新闻',
-            link: '/blog/news/1',
-            color: 'theme-1-color-purple'
-          },
-          {
-            tag: '生活',
-            link: '/blog/life/1',
-            color: 'theme-1-color-purple'
-          },
-          {
-            tag: '科技',
-            link: '/blog/tech/1',
-            color: 'theme-1-color-blue'
-          }
-        ],
-        content: '----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------' +
-        '美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚---' +
-        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----' +
-        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----' +
-        '-----美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚--------美国轰炸叙利亚----....'
+    // TODO 封装axios 制作分页栏
+    let $this = this
+    this.$ajax
+      .get('/queryAll', {
+        baseURL: URL_ARTICLES + 'articles',
+        params: {
+          page: 3
+        },
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
+        }
       })
-    }
+      .then(function (result) {
+        console.log(result)
+        $this.news = result.data[0].items
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
   }
 }
 </script>
