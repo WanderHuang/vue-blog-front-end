@@ -1,6 +1,6 @@
 <template>
   <section class="home-page">
-    <articlePreview v-for="info in news" :view ="info" :key="info.title"></articlePreview>
+    <articlePreview v-for="(info, index) in news" :view ="info" :key="info.title + index"></articlePreview>
   </section>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
       .get('/queryAll', {
         baseURL: URL_ARTICLES + 'articles',
         params: {
-          page: 3
+          page: 1
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

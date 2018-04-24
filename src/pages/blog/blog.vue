@@ -1,76 +1,73 @@
 <template>
-  <div id="blog">
-    <!-- eslint-disable-next-line -->
-    <article v-for="(info, index) in news">
-      <header class="article-header">
-        <h2 class="article-title"><a @click="clicked">{{index}}.{{info.title}}</a></h2>
-        <div class="tag-time">
-          <time datetime="2018-04-19">2018-04-19</time>
-        </div>
-      </header>
-    </article>
+  <div>
+    <div v-html="markedFile" class="blog-file"></div>
   </div>
 </template>
 <script>
+import codeFormatter from '@/lib/marked.js'
+import marked from 'marked'
+import hljs from 'highlightjs'
+import 'highlightjs/styles/googlecode.css'
+import {backend} from '../../config'
+const URL_BLOG = backend.base + backend.blog + '/'
+const render = new marked.Renderer()
+render.code = function (code, language, escape) {
+  return codeFormatter.getCodeBlock(code)
+}
 export default {
+  components: {marked, hljs},
   data () {
     return {
-      news: []
+      paragraph: '# loading'
     }
   },
-  created () {
-    let len = 10
-    while (len--) {
-      this.news.push({
-        title: '----美国轰炸叙利亚----'
+  computed: {
+    markedFile: function () {
+      return marked(this.paragraph, {
+        renderer: render,
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: true,
+        sanitize: true,
+        smartLists: true,
+        smartypants: true,
+        highlight: function (code, language, callback) {
+          return hljs.highlightAuto(code).value
+        }
       })
     }
   },
-  methods: {
-    clicked (e) {
-      alert('you clicked: ' + e.target.innerHTML)
-    }
+  created () {
+    let $this = this
+    $this.$ajax
+      .get('/', {
+        baseURL: URL_BLOG,
+        params: {
+          location: $this.$route.params.location
+        },
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'text/plain'
+        }
+      })
+      .then(function (result) {
+        console.log(result)
+        $this.paragraph = result.data
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
   }
 }
 </script>
 <style scoped>
-#blog{
-  margin: 0 15%;
+.blog-file{
+  width: 80%;
+  margin: 0 auto;
+  background: rgba(196, 238, 239, 0.21176470588235294);
 }
-article{
-  padding: 20px;
-  margin-left: 30px;
-}
-.article-header{
-  position: relative;
-}
-.article-header::before{
-    content: " ";
-    position: absolute;
-    left: 0;
-    top: 12px;
-    width: 6px;
-    height: 6px;
-    margin-left: -4px;
-    background: #bbb;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
-    transition-delay: 0s;
-    transition-property: background;
-}
-.article-title{
-  margin-left: 150px;
-  font-size: 20px;
-}
-.article-title a {
-  text-decoration: none;
-}
-.tag-time{
-  position: absolute;
-  font-size: 20px;
-  left: 20px;
-  top: 5px;
+.blog-code{
+  background: rgba(0, 0, 0, 0.8117647058823529) !important
 }
 </style>

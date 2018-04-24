@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import homeIndex from '@/pages/index'
 import home from '@/pages/home/home'
+import blogIndex from '@/pages/blog/index'
 import blog from '@/pages/blog/blog'
 
 Vue.use(Router)
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -21,9 +23,14 @@ export default new Router({
         },
         {
           path: 'blog',
-          component: blog
+          component: blogIndex
         }
       ]
+    },
+    {
+      name: 'blogread',
+      path: '/blogread/:location',
+      component: blog
     }
   ]
 })

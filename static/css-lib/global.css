@@ -99,3 +99,21 @@ span i {
     opacity: 1;
     color: blue;
 }
+
+.theme-blog-code-background{
+    background: #1d1f21;
+    color: #c5c8c6;
+  }
+.theme-blog-code-number {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #888f96;
+    text-align: right;
+    background-color: #000;
+}
+.theme-blog-code-chars{
+    /*comment*/
+}
+.theme-blog-code-line{
+    /*line*/
+}

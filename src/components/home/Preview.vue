@@ -3,7 +3,7 @@
     <div class="home-article-container">
       <header>
         <div class="article-header">
-          <h1><router-link :to="view.location" class="theme-1-underline-a">{{view.title}}</router-link></h1>
+          <h1><router-link :to="{name:'blogread', params: { location: view.location }}" class="theme-1-underline-a">{{view.title}}</router-link></h1>
           <div class="article-header-row">
             <span class="article-header-row-item theme-1-tags"><i class="fa fa-calendar"></i>{{view.date}}</span>
             <router-link :to="view.authorAddress" class="theme-1-underline-a"><span class="article-header-row-item"><i class="fa fa-user"></i>{{view.author}}</span></router-link>
@@ -18,7 +18,7 @@
       </div>
       <footer>
         <div class="article-footer">
-          <span class="article-footer-item"><router-link :to="view.location" class="theme-1-blur-button">阅读全文</router-link></span>
+          <span class="article-footer-item"><router-link :to="{name:'blogread', params: { location: view.location }}" class="theme-1-blur-button">阅读全文</router-link></span>
         </div>
       </footer>
     </div>
