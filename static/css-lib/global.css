@@ -117,3 +117,50 @@ span i {
 .theme-blog-code-line{
     /*line*/
 }
+
+/* pagination */
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: rgba(168, 232, 243, 0.38823529411764707);
+    height: 30px;
+    width: 100%;
+  
+  }
+  .page-current {
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 0px 0px 3px #03A9F4;
+    color: #03a9f4;
+  }
+  .page-pre, .page-after {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .page-pre::after {
+    content: '';
+    border: 15px solid #0000;
+    border-right-color: #00d8ff9c;
+    width: 0;
+    height: 0;
+    display: block;
+  }
+  
+  .page-after::after {
+    content: '';
+    border: 15px solid #0000;
+    border-left-color: #00d8ff9c;
+    width: 0;
+    height: 0;
+    display: block;
+  }
+  .page-pre:hover::after{
+    border-right-color: #00d8ff
+  }
+  .page-after:hover::after {
+    border-left-color: #00d8ff;
+  }

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "driver.js": "^0.5.0",
     "highlightjs": "^9.10.0",
     "marked": "^0.3.19",
     "vue": "^2.5.2",
