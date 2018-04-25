@@ -9,4 +9,6 @@
 - [highlight.js](https://www.npmjs.com/package/highlightjs)：代码高亮 现在还存在一些问题
 - [driver.js](https://github.com/kamranahmedse/driver.js): 提供对话框库 可以用来做操作指引之类的
 
-dri  
+## 操作  
+* 运行：`npm run dev`  
+* 编译：`npm run build`
