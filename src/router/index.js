@@ -24,13 +24,13 @@ export default new Router({
         {
           path: 'blog',
           component: blogIndex
-        },
-        {
-          name: 'blogread',
-          path: '/blogread/:location',
-          component: blog
         }
       ]
+    },
+    {
+      name: 'blogread',
+      path: '/blogread/:location',
+      component: blog
     }
   ]
 })

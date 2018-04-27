@@ -1,0 +1,72 @@
+<template>
+  <header class="header theme-1-header-bg">
+      <div class="header-container">
+        <div class="avatar-container">
+          <!-- 应替换成后台获取头像 未登陆的展示LOGIN标签 已登陆的可通过点击这个按钮进入后台-->
+          <img alt="avatar" src="../../assets/Avatar.jpg" class="avatar" title="点击登陆"/>
+        </div>
+        <ul>
+            <li v-for="item in header" class="header-item" :key="item.key">
+              <router-link :to="item.value" :title="item.key" class="theme-1-nav-color">
+                <span> <i :class="item.font"></i>{{item.key}}</span>
+              </router-link>
+            </li>
+        </ul>
+      </div>
+    </header>
+</template>
+<script>
+import {frontend} from '../../config'
+export default {
+  name: 'app-header',
+  data () {
+    return {
+      header: []
+    }
+  },
+  created () {
+    let $this = this
+    $this.$ajax.get('static/config/base.json', {
+      baseURL: frontend.base
+    })
+      .then(response => {
+        $this.header = response.data.header
+        $this.footer = response.data.footer
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+</script>
+<style scoped>
+.header{
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.header-container {
+  height: 100%;
+  margin: 0 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ul{
+  display: flex;
+}
+ul li{
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.avatar-container{
+  display: flex;
+  justify-content: center;
+}
+.avatar{
+  border-radius: 50%; width: 40px; height: 40px; cursor: pointer;
+}
+</style>

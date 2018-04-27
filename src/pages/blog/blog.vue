@@ -1,21 +1,26 @@
 <template>
-  <div>
+  <div id="blog-detail">
+    <app-header></app-header>
     <div v-html="markedFile" class="blog-file"></div>
   </div>
 </template>
 <script>
-import codeFormatter from '@/lib/marked.js'
+import header from '@/components/background/header.vue'
 import marked from 'marked'
 import hljs from 'highlightjs'
 import 'highlightjs/styles/googlecode.css'
 import {backend} from '../../config'
 const URL_BLOG = backend.base + backend.blog + '/'
+
+marked.setOptions({
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value
+  },
+  sanitize: true
+})
 const render = new marked.Renderer()
-render.code = function (code, language, escape) {
-  return codeFormatter.getCodeBlock(code)
-}
 export default {
-  components: {marked, hljs},
+  components: {marked, hljs, 'app-header': header},
   data () {
     return {
       paragraph: '# loading'
@@ -23,19 +28,7 @@ export default {
   },
   computed: {
     markedFile: function () {
-      return marked(this.paragraph, {
-        renderer: render,
-        gfm: true,
-        tables: true,
-        breaks: true,
-        pedantic: true,
-        sanitize: true,
-        smartLists: true,
-        smartypants: true,
-        highlight: function (code, language, callback) {
-          return hljs.highlightAuto(code).value
-        }
-      })
+      return marked(this.paragraph, {renderer: render})
     }
   },
   created () {
@@ -61,13 +54,12 @@ export default {
   }
 }
 </script>
-<style scoped>
-.blog-file{
-  width: 80%;
-  margin: 0 auto;
-  background: rgba(196, 238, 239, 0.21176470588235294);
-}
-.blog-code{
-  background: rgba(0, 0, 0, 0.8117647058823529) !important
+<style lang="less" rel="stylesheet/less" scoped>
+#blog-detail{
+  .blog-file{
+    width: 80%;
+    margin: 60px auto;
+    background: rgba(196, 238, 239, 0.21176470588235294);
+  }
 }
 </style>

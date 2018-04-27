@@ -11,4 +11,11 @@
 
 ## 操作  
 * 运行：`npm run dev`  
-* 编译：`npm run build`
+* 编译：`npm run build`  
+## TODO LIST  
+* 封装axios请求  
+* 封装background  
+* 解决静态资源引入问题  
+* 引入vuex状态管理  
+* 划分路由区块  
+* 鉴权  
