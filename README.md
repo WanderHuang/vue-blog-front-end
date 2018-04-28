@@ -21,4 +21,4 @@
 * 鉴权  
 
 ## 当前效果  
-![image](https://github.com/WanderHuang/vue-blog-front-end/tree/master/docs/current.gif)	
+![image](https://github.com/WanderHuang/vue-blog-front-end/blob/master/docs/current.gif)	
