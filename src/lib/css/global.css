@@ -100,24 +100,6 @@ span i {
     color: blue;
 }
 
-.theme-blog-code-background{
-    background: #1d1f21;
-    color: #c5c8c6;
-  }
-.theme-blog-code-number {
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888f96;
-    text-align: right;
-    background-color: #000;
-}
-.theme-blog-code-chars{
-    /*comment*/
-}
-.theme-blog-code-line{
-    /*line*/
-}
-
 /* pagination */
 .pagination {
     display: flex;
@@ -126,6 +108,7 @@ span i {
     background: rgba(168, 232, 243, 0.38823529411764707);
     height: 30px;
     width: 100%;
+    margin: 10px auto;
   
   }
   .page-current {
@@ -145,15 +128,19 @@ span i {
     content: '';
     border: 15px solid #0000;
     border-right-color: #00d8ff9c;
+    border-right-width: 30px;
     width: 0;
     height: 0;
     display: block;
+    position: relative;
+    left: -12px;
   }
   
   .page-after::after {
     content: '';
     border: 15px solid #0000;
     border-left-color: #00d8ff9c;
+    border-left-width: 30px;
     width: 0;
     height: 0;
     display: block;

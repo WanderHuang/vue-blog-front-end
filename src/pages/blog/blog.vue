@@ -18,7 +18,6 @@ marked.setOptions({
   },
   sanitize: true
 })
-const render = new marked.Renderer()
 export default {
   components: {marked, hljs, 'app-header': header},
   data () {
@@ -28,7 +27,7 @@ export default {
   },
   computed: {
     markedFile: function () {
-      return marked(this.paragraph, {renderer: render})
+      return marked(this.paragraph, {renderer: new marked.Renderer()})
     }
   },
   created () {
@@ -41,7 +40,7 @@ export default {
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Content-Type': 'text/plain'
+          'Content-Type': 'text/html'
         }
       })
       .then(function (result) {
@@ -54,12 +53,12 @@ export default {
   }
 }
 </script>
-<style lang="less" rel="stylesheet/less" scoped>
-#blog-detail{
-  .blog-file{
-    width: 80%;
-    margin: 60px auto;
-    background: rgba(196, 238, 239, 0.21176470588235294);
-  }
+<style scoped>
+.blog-file{
+  margin: 0 12%;
+  background: hsl(193, 39%, 75%);
+}
+pre{
+  background: red
 }
 </style>

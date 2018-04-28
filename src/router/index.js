@@ -28,8 +28,8 @@ export default new Router({
       ]
     },
     {
-      name: 'blogread',
-      path: '/blogread/:location',
+      name: 'articles',
+      path: '/articles/:location',
       component: blog
     }
   ]

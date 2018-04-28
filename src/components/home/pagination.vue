@@ -67,5 +67,5 @@ export default {
 </script>
 <style>
 /*引入driver.js 默认样式 lib中做了自定义修改*/
-@import "../../../static/css-lib/driver.min.css"
+@import "../../lib/css/driver.min.css"
 </style>
