@@ -58,7 +58,4 @@ export default {
   margin: 0 12%;
   background: hsl(193, 39%, 75%);
 }
-pre{
-  background: red
-}
 </style>
