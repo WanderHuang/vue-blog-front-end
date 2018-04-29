@@ -4,9 +4,11 @@ import homeIndex from '@/pages/index'
 import home from '@/pages/home/home'
 import blogIndex from '@/pages/blog/index'
 import blog from '@/pages/blog/blog'
+import login from '@/pages/login/login'
 
 Vue.use(Router)
-export default new Router({
+
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -31,6 +33,25 @@ export default new Router({
       name: 'articles',
       path: '/articles/:location',
       component: blog
+    },
+    {
+      name: 'login',
+      path: '/login',
+      component: login
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/' && !to.query.name) {
+    console.info('redirect to login')
+    next('/login')
+  }
+
+  if (from.path === '/login' && to.query.name && to.query.password) {
+    next('/home')
+  }
+  next()
+})
+
+export default router
