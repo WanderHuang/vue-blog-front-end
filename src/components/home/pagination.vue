@@ -66,6 +66,5 @@ export default {
 }
 </script>
 <style>
-/*引入driver.js 默认样式 lib中做了自定义修改*/
-@import "../../lib/css/driver.min.css"
+/** 主页中需要引入driver.js的样式表*/
 </style>

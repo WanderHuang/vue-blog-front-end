@@ -8,12 +8,12 @@
       <div class="form">
         <ul>
           <li><i class="fa fa-user"></i><input type="text" placeholder="用户名" v-model="user.name"></li>
-          <li><i class="fa fa-key"></i><input type="password" placeholder="密码" v-model="user.password"></li>
+          <li><i class="fa fa-key"></i><input type="password" placeholder="密码" v-model="user.password" @keyup.enter="submit"></li>
         </ul>
       </div>
       <div class="action">
         <ul>
-          <li><i class="fa fa-sign-in" title="登录" @click="login"></i></li>
+          <li><i class="fa fa-sign-in" title="登录" @click="submit"></i></li>
           <!-- 注册暂不开放 TODO 增加注册功能-->
           <!-- <li><i class="fa fa-pencil-square-o" title="注册"></i></li> -->
         </ul>
@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import {mapActions, mapMutations} from 'vuex'
 import Driver from 'driver.js'
 const driver = new Driver()
 export default {
@@ -33,30 +34,42 @@ export default {
     }
   },
   methods: {
-    // TODO 请求后台数据 是否匹配
-    validate (el) {
+    ...mapActions(['login']),
+    ...mapMutations(['setUser']),
+    tips (el, title) {
       driver.highlight({
         element: el,
+        stageBackground: 'lightblue',
         popover: {
-          title: '已经是第一页拉！'
+          title: title
         }
       })
     },
-    login () {
-      this.$router.push({
-        path: 'login',
-        query: {
-          name: this.user.name,
-          password: this.user.password
-        }
-      })
+    submit () {
+      const $this = this
+      this.login(this.user)
+        .then(res => {
+          if (res.data.code === 0) {
+            // state 存储用户信息 localStorage 存储token信息
+            $this.user.avatar = res.data.avatar
+            $this.$store.state.user = $this.user
+            localStorage.setItem('token', res.data.token)
+            $this.$router.push({
+              path: 'home'
+            })
+          } else {
+            $this.tips('.login-page', '认证失败! 请检查用户名和密码')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
 /*引入driver.js 默认样式 lib中做了自定义修改*/
-@import "../../lib/css/driver.min.css";
 .login-page {
   display: flex;
   align-items: center;

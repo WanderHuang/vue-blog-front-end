@@ -3,7 +3,7 @@
       <div class="header-container">
         <div class="avatar-container">
           <!-- 应替换成后台获取头像 未登陆的展示LOGIN标签 已登陆的可通过点击这个按钮进入后台-->
-          <img alt="avatar" src="../../assets/Avatar.jpg" class="avatar" title="点击登陆"/>
+          <img id="avatar" alt="avatar" :src="avatar" class="avatar" title="点击修改图标"/>
         </div>
         <ul>
             <li v-for="item in header" class="header-item" :key="item.key">
@@ -16,7 +16,8 @@
     </header>
 </template>
 <script>
-import {frontend} from '../../config'
+import {frontend, backend} from '../../config'
+import { mapState } from 'vuex'
 export default {
   name: 'app-header',
   data () {
@@ -24,7 +25,12 @@ export default {
       header: []
     }
   },
+  computed: mapState({
+    // 头像根据state.user获取
+    avatar: state => backend.base + 'server/static/image/get?path=' + state.user.avatar
+  }),
   created () {
+    // 前端定义的菜单栏资源
     let $this = this
     $this.$ajax.get('static/config/base.json', {
       baseURL: frontend.base

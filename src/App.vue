@@ -16,6 +16,8 @@ export default {
 <style>
 @import url("./lib/css/font-awesome/css/font-awesome.min.css");
 @import url("./lib/css/global.css");
+/*引入driver.js 默认样式 lib中做了自定义修改*/
+@import url("./lib/css/driver.min.css");
 #app {
   width: 100%;
   height: 100%;
