@@ -1,7 +1,7 @@
 <template>
   <section class="home-page">
-    <articlePreview v-for="(info, index) in news" :view ="info" :key="info.title + index"></articlePreview>
-    <pagination :page="page" @queryPage="queryPage" ref="pagination"></pagination>
+    <articlePreview v-for="(info, index) in pageArticle.docs" :view ="info" :key="info.title + index"></articlePreview>
+    <pagination :page="pageArticle.page" @queryPage="queryPage" ref="pagination"></pagination>
   </section>
 </template>
 <script>
@@ -12,8 +12,9 @@ const URL_ARTICLES = backend.base + backend.home + '/'
 export default {
   data () {
     return {
-      news: [],
-      page: 0,
+      pageArticle: {
+        page: 1
+      },
       err: false
     }
   },
@@ -40,13 +41,10 @@ export default {
         })
         .then(function (result) {
           console.log('receive result: ' + result)
-          try {
-            $this.news = result.data[0].items
-            $this.page = result.data[0].page
-          } catch (err) {
-            $this.err = true
+          if (result.data.docs.length === 0) {
             $this.$refs.pagination.directAfter(false)
-            console.log(result)
+          } else {
+            $this.pageArticle = result.data
           }
         })
         .catch(function (err) {

@@ -52,8 +52,9 @@ export default {
           if (res.data.code === 0) {
             // state 存储用户信息 localStorage 存储token信息
             $this.user.avatar = res.data.avatar
+            $this.user.token = res.data.token
             $this.$store.state.user = $this.user
-            localStorage.setItem('token', res.data.token)
+            $this.setUser($this.user)
             $this.$router.push({
               path: 'home'
             })

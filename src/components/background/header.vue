@@ -27,7 +27,11 @@ export default {
   },
   computed: mapState({
     // 头像根据state.user获取
-    avatar: state => backend.base + 'server/static/image/get?path=' + state.user.avatar
+    avatar: state => {
+      let user = JSON.parse(localStorage.getItem('user'))
+      let avatar = state.user.avatar ? state.user.avatar : (user ? user.avatar : '')
+      return backend.base + 'server/static/image/get?path=' + avatar
+    }
   }),
   created () {
     // 前端定义的菜单栏资源

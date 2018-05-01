@@ -13,7 +13,7 @@ export default {
   name: 'pagination',
   props: {
     page: {
-      type: Number,
+      type: Number | String,
       default: () => {
         return 0
       }
@@ -37,9 +37,14 @@ export default {
       }
     }
   },
+  computed: {
+    $page () {
+      return Number(this.page)
+    }
+  },
   methods: {
     directPre () {
-      if (this.page <= 1) {
+      if (this.$page <= 1) {
         driver.highlight({
           element: '.page-pre',
           popover: {
@@ -47,7 +52,7 @@ export default {
           }
         })
       } else {
-        this.$emit('queryPage', this.page - 1)
+        this.$emit('queryPage', this.$page - 1)
       }
     },
     directAfter (err) {
@@ -59,7 +64,7 @@ export default {
           }
         })
       } else {
-        this.$emit('queryPage', this.page + 1)
+        this.$emit('queryPage', this.$page + 1)
       }
     }
   }
