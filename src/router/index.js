@@ -5,6 +5,7 @@ import home from '@/pages/home/home'
 import blogIndex from '@/pages/blog/index'
 import blog from '@/pages/blog/blog'
 import login from '@/pages/login/login'
+import wall from '@/pages/wall/wall'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ const router = new Router({
         {
           path: 'blog',
           component: blogIndex
+        },
+        {
+          path: 'wall',
+          component: wall
         }
       ]
     },

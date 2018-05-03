@@ -19,6 +19,11 @@
             "key": "标签",
             "value": "/tags",
             "font" : "fa fa-tags"
+        },
+        {
+            "key": "照片墙",
+            "value": "/wall",
+            "font" : "fa fa-photo"
         }
     ],
     "footer": [

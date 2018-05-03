@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="main scroll-bar">
     <app-header></app-header>
     <div class="container">
       <router-view/>
