@@ -13,12 +13,17 @@
 * 运行：`npm run dev`  
 * 编译：`npm run build`  
 ## TODO LIST  
-* 封装axios请求  
 * <del>封装background</del>  
-* 解决静态资源引入问题  
-* 引入vuex状态管理  
-* 划分路由区块  
-* 鉴权  
+* <del>解决静态资源引入问题</del>  
+* <del>引入vuex状态管理</del>  
+* <del>划分路由区块</del>  
+* <del>鉴权</del>  
+* 用户注册  
+* 用户博客后台(页面级)：博文管理、个人资料、照片故事  
+* 用户文件(markdown博文 photo=>jpeg照片格式转化)上传  
+* 多样化照片墙矩阵  
+* 照片分多钟大小、精度  
+* 封装axios请求  
 
 ## 当前效果  
 ![image](https://github.com/WanderHuang/vue-blog-front-end/blob/master/docs/current.gif)	

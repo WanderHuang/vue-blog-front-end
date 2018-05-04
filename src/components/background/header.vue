@@ -69,7 +69,7 @@ ul{
 }
 ul li{
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 1.2em;
   cursor: pointer;
 }
 .avatar-container{

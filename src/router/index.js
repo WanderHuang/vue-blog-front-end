@@ -48,15 +48,17 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/' && !to.query.name) {
+  // 不是重定向到login页面且未鉴权 则定向到login页面
+  if (to.path !== '/login' && (!localStorage.token && !localStorage.user)) {
     console.info('redirect to login')
     next('/login')
-  }
-
-  if (from.path === '/login' && to.query.name && to.query.password) {
+  } else if (from.path === '/login' && to.query.name && to.query.password) {
+    // 来自于login页面且携带用户信息 用户鉴定在路由之前 所以这里能保证携带的用户信息是合法的
     next('/home')
+  } else {
+    // 其余消息
+    next()
   }
-  next()
 })
 
 export default router
